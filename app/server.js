@@ -1,18 +1,22 @@
 // Define Dependencies
-const express = require("express")
-const cors = require('cors')
-
-const logger = require('./utils/logger')
+import express from "express"
+import cors from "cors"
+import appConfig from "./configs/appConfig"
+import loggerRequest from './middlewares/loggerRequest'
 
 const app = express()
-const PORT = 8080
-
 
 // Define Middlewares
 app.use(cors())
+    .use(express.json())
+    .use(express.urlencoded({
+        extended: true
+    }))
+    .use(loggerRequest)
+
 
 // Define Routes
-app.get('/', (req, res) => {
+app.post('/:id', (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
     res.send(`<h1 style="color: blue;">Hello world !</h1>`)
 })
@@ -29,6 +33,6 @@ app.use((req, res, next) => {
 })
 
 // Define Middlewares
-app.listen(PORT, () => {
-    console.log(`Server is listening on port: ${PORT}`)
+app.listen(appConfig.PORT, () => {
+    console.log(`Server is listening on port: ${appConfig.PORT}`)
 })
