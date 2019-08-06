@@ -1,4 +1,4 @@
-const formatResponse = (success, data, message) => {
+export default (success, data, message) => {
     return {
         success: success,
         data: data,
@@ -6,4 +6,3 @@ const formatResponse = (success, data, message) => {
         time: Date.now()
     }
 }
-export default formatResponse

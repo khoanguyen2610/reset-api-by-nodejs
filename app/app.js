@@ -1,38 +1,40 @@
 // Define Dependencies
 import express from "express"
 import cors from "cors"
+import compression from "compression"
+import morgan from "morgan"
+
 import appConfig from "./configs/appConfig"
-import loggerRequest from './middlewares/loggerRequest'
+import LoggerRequest from './middlewares/LoggerRequest'
 
 const app = express()
 
 // Define Middlewares
-app.use(cors())
+app.use(morgan("combined"))
+    .use(cors())
+    .use(compression())
     .use(express.json())
     .use(express.urlencoded({
         extended: true
     }))
-    .use(loggerRequest)
+    .use(LoggerRequest)
 
 
 // Define Routes
 app.post('/:id', (req, res) => {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.send(`<h1 style="color: blue;">Hello world !</h1>`)
+    res.status(200).send({success: true, payload: []})
 })
 //http://localhost:8080/aboutus
 app.get('/aboutus', (req, res) => {
     res.send('This is about page ')
-
 })
 
 app.use((req, res, next) => {
-    console.log("404")
-    res.send('Page not fount')
+    res.status(404).send('Page not fount')
     next()
 })
 
-// Define Middlewares
-app.listen(appConfig.PORT, () => {
+// HTTP
+app.listen(appConfig.PORT, _ => {
     console.log(`Server is listening on port: ${appConfig.PORT}`)
 })
