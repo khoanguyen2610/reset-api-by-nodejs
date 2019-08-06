@@ -14,7 +14,8 @@ class MongoDb {
             const uri = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
             const options = {
                 connectTimeoutMS: 10000,
-                useNewUrlParser: true
+                useNewUrlParser: true,
+                useCreateIndex: true,
             }
             await mongoose.connect(uri, options)
             console.log("|=====================> Connect Mongo Database Successfully")
