@@ -5,7 +5,10 @@ import compression from "compression"
 import morgan from "morgan"
 
 import appConfig from "./configs/appConfig"
+import ErrorHandling from './middlewares/ErrorHandling'
 import LoggerRequest from './middlewares/LoggerRequest'
+import MongoDb from "./databases/MongoDb"
+
 
 const app = express()
 
@@ -19,9 +22,9 @@ app.use(morgan("combined"))
     }))
     .use(LoggerRequest)
 
-
-// Define Routes
+    // Define Routes
 app.post('/:id', (req, res) => {
+    console.log("firedddd", rewrewrew)
     res.status(200).send({success: true, payload: []})
 })
 //http://localhost:8080/aboutus
@@ -34,7 +37,11 @@ app.use((req, res, next) => {
     next()
 })
 
+// Error Handling Middleware
+app.use(ErrorHandling)
+
 // HTTP
 app.listen(appConfig.PORT, _ => {
-    console.log(`Server is listening on port: ${appConfig.PORT}`)
+    console.log(`|=====================> Server is listening on port: ${appConfig.PORT}`)
+    MongoDb.connectDb()
 })

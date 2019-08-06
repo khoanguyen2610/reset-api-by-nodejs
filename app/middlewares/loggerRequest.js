@@ -18,7 +18,7 @@ export default (req, res, next) => {
 
 	const objLogger = {
 			level: "info",
-			label: "Request Tracking",
+			label: "REQUEST_TRACKING",
 			message: {
 				time: new Date().toString(),
 				path: req.url,

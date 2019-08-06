@@ -16,7 +16,7 @@ services:
         volumes:
             - ./docker/mongo-server/script/:/docker-entrypoint-initdb.d/
             # - pmkt-mongoDb-data:/data/db
-            # - ./docker/mongo-server/data:/data/db
+            - ./docker/mongo-server/data:/data/db
         command: mongod --auth
 volumes:
     pmkt-mongoDb-data:

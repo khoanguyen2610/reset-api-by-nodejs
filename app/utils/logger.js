@@ -1,9 +1,9 @@
 
 import { createLogger, format, transports } from "winston"
 import moment from "moment"
-import { join} from "path"
+import path from "path"
 
-const logPath = join(__dirname, `../../logs/${moment().format('YYYY/MM/DD')}`)
+const logPath = path.join(__dirname, `../../logs/${moment().format('YYYY/MM/DD')}`)
 
 const myFormat = format.json(({ level, message, label, timestamp }) => {
     return {
