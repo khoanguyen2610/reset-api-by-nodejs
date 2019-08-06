@@ -12,12 +12,12 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: passpass
-            MONGO_INITDB_DATABASE: pmkt
+            MONGO_INITDB_DATABASE: pmkt_db
         volumes:
             - ./docker/mongo-server/script/:/docker-entrypoint-initdb.d/
             # - pmkt-mongoDb-data:/data/db
             # - ./docker/mongo-server/data:/data/db
-        command: mongod
+        command: mongod --auth
 volumes:
     pmkt-mongoDb-data:
 networks:
