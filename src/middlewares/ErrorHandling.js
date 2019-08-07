@@ -17,14 +17,14 @@ export default (err, req, res, next) => {
     
     // Response data
     if (process.env.NODE_ENV === 'production') {
-        res.status(500).send({
-            sucess: false,
+        res.jsonError({
+            code: 500,
             message: "Unexpected Error"
         })
     }
-    res.status(500).send({
-        sucess: false,
-        message: err.stack.toString()
+    res.jsonError({
+        code: 500,
+        message: err.message.toString(),
+        errors: err.stack.toString()
     })
-    
 }

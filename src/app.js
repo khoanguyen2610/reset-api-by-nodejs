@@ -6,7 +6,8 @@ import morgan from "morgan"
 
 import AppConfig from "./configs/AppConfig"
 import ErrorHandling from './middlewares/ErrorHandling'
-import LoggerRequest from './middlewares/LoggerRequest'
+import LoggerTrackingHandling from './middlewares/LoggerTrackingHandling'
+import ResponseHandling from './middlewares/ResponseHandling'
 import MongoDb from "./databases/MongoDb"
 
 // Import file routes config
@@ -23,10 +24,15 @@ app.use(morgan("combined"))
     .use(express.urlencoded({
         extended: true
     }))
-    .use(LoggerRequest)
+    .use(LoggerTrackingHandling)
+    .use(ResponseHandling)
 
 // Define Routes
 app.use("/api/v1/users", UserRoutes)
+app.use("/api/v1/account", UserRoutes)
+app.use("/api/v1/member", UserRoutes)
+app.use("/api/v1/formula", UserRoutes)
+app.use("/api/v1/formula-group", UserRoutes)
 
 
 app.use((req, res, next) => {

@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 import Logger from "../utils/Logger"
 
 class MongoDb {
-    connectDb = async _ => {
+    async connectDb() {
         try {
             const DB_HOST = process.env.DB_HOST || "127.0.0.1"
             const DB_PORT = process.env.DB_PORT || "27017"
