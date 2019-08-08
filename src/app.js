@@ -5,10 +5,12 @@ import compression from "compression"
 import morgan from "morgan"
 
 import AppConfig from "./configs/AppConfig"
+import MongoDb from "./databases/MongoDb"
+
 import ErrorHandling from './middlewares/ErrorHandling'
 import LoggerTrackingHandling from './middlewares/LoggerTrackingHandling'
 import ResponseHandling from './middlewares/ResponseHandling'
-import MongoDb from "./databases/MongoDb"
+// import ValidatorHandling from './middlewares/ValidatorHandling'
 
 // Import file routes config
 import UserRoutes from "./routes/UserRoutes"
@@ -36,8 +38,8 @@ app.use("/api/v1/formula-group", UserRoutes)
 
 
 app.use((req, res, next) => {
-    res.status(404).json({
-        success: false,
+    res.jsonError({
+        code: 404,
         message: "Page Not Found"
     })
     next()

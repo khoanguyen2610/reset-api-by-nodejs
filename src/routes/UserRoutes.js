@@ -1,10 +1,14 @@
 import express from "express"
 
-import UsersController from "../controllers/UsersController"
+
+import ValidatorHandling from "../middlewares/ValidatorHandling"
+
+import UsersController from "../controllers/users/UsersController"
+import UserValidator from "../controllers/users/UsersValidator"
 
 const router = express.Router()
 
-router.get("/", UsersController.index)
+router.get("/", ValidatorHandling(UserValidator.postCreateUser), UsersController.index)
 router.get("/:id", UsersController.detail)
 
 

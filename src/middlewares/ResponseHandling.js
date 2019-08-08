@@ -1,5 +1,4 @@
 export default ( req, res, next) => {
-
     // Define response format incase success
     res.jsonSuccess = ({...args}) => {
         return res.status(args.code || 200).json({

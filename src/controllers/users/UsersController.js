@@ -1,14 +1,20 @@
-import UsersModel from "../models/UsersModel"
+import UsersModel from "../../models/UsersModel"
+import { validationResult } from "express-validator"
 
 class UsersController {
     async index (req, res, next) {
-        
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.jsonError({
+                code: 400,
+                message: "Bad Request",
+                errors: errors.mapped()
+            })
+        }
+
         try {
-            // await UsersModel({username: "api-test"}).save((err, result) => {
-            // })
-            // await UsersModel.joiValidate()
             const users = await UsersModel.find({username: /av8899/})
-            res.jsonSuccess({
+            return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: users
             })
@@ -19,7 +25,7 @@ class UsersController {
 
     detail (req, res, next) {
         try {
-            res.jsonError({
+            return res.jsonError({
                 message: "You requested detail users controller",
                 errors: "You requested detail users controller"
             })

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -r esm src/app.js",
-    "start:pm2": "pm2 start src/app.js --watch --node-args=\"-r esm\" && pm2 log",
-    "restart:pm2": "pm2 restart src/app.js --watch --node-args=\"-r esm\" && pm2 log",
+    "start:pm2": "pm2 start ecosystem.config.js",
+    "restart:pm2": "pm2 start ecosystem.config.js",
     "stop:pm2": "pm2 stop all",
     "log:pm2": "pm2 log"
   },
@@ -20,6 +20,7 @@
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-validator": "^6.1.1",
     "joigoose": "^4.0.8",
     "moment": "^2.24.0",
     "mongoose": "^5.6.8",
