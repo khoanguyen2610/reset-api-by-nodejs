@@ -11,11 +11,11 @@ const myFormat = format.json(({ level, message, label, timestamp }) => {
     return {
         timestamp,
         level,
-		label,
-		message
+        label,
+        message
     }
-});
-   
+})
+
 
 export default createLogger({
     format: format.combine(
@@ -23,7 +23,7 @@ export default createLogger({
         format.timestamp(),
         myFormat
     ),
-    
+
     transports: [
         new transports.Console({
             format: format.prettyPrint()
@@ -42,4 +42,4 @@ export default createLogger({
             filename: `${logPath}/combined.log`
         })
     ]
-});
+})
