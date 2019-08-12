@@ -19,8 +19,8 @@ import UserRoutes from "./routes/UserRoutes"
 const app = express()
 
 // Define Middlewares
-app.use(morgan("combined"))
-    .use(cors())
+if (process.env.NODE_ENV !== "test") app.use(morgan("combined"))
+app.use(cors())
     .use(compression())
     .use(express.json())
     .use(express.urlencoded({
@@ -50,6 +50,8 @@ app.use(ErrorHandling)
 
 // HTTP
 app.listen(AppConfig.PORT, _ => {
-    console.log(`|=====================> Server is listening on port: ${AppConfig.PORT}`)
+    if( process.env.NODE_ENV !== "test") console.log(`|=====================> Server is listening on port: ${AppConfig.PORT}`)
     MongoDb.connectDb()
 })
+
+export default app

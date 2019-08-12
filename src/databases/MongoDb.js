@@ -18,7 +18,7 @@ class MongoDb {
                 useCreateIndex: true,
             }
             await mongoose.connect(uri, options)
-            console.log("|=====================> Connect Mongo Database Successfully")
+            if( process.env.NODE_ENV !== "test") console.log("|=====================> Connect Mongo Database Successfully")
         } catch (error) {
             Logger.log({
                 level: "error",
@@ -28,7 +28,7 @@ class MongoDb {
                     error: error
                 }
             })
-            console.log("|=====================> Cannot Connect Mongo Database")
+            if( process.env.NODE_ENV !== "test") console.log("|=====================> Cannot Connect Mongo Database")
         }
     }
 }
