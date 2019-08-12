@@ -19,7 +19,8 @@ import UserRoutes from "./routes/UserRoutes"
 const app = express()
 
 // Define Middlewares
-if (process.env.NODE_ENV !== "test") app.use(morgan("combined"))
+// if (process.env.NODE_ENV !== "test") app.use(morgan("combined"))
+
 app.use(cors())
     .use(compression())
     .use(express.json())
