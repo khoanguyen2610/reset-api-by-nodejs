@@ -15,10 +15,10 @@ chai.use(chaiHttp)
 | Test /Get routes
 |--------------------------------------------------------------------------
 */
-describe('/GET /api/v1/users', () => {
-    it('it should GET all the users', (done) => {
+describe("/GET /api/v1/users", () => {
+    it("it should GET all the users", (done) => {
         chai.request(app)
-            .get('/api/v1/users')
+            .get("/api/v1/users")
             .end((err, res) => {
                 res.should.have.status(200)
                 res.body.data.should.not.be.empty
@@ -32,10 +32,10 @@ describe('/GET /api/v1/users', () => {
 | Test /Post routes
 |--------------------------------------------------------------------------
 */
-describe('/POST /api/v1/users', () => {
-    it('it should GET all the users', (done) => {
+describe("/POST /api/v1/users", () => {
+    it("it should GET all the users", (done) => {
         chai.request(app)
-            .get('/api/v1/users')
+            .get("/api/v1/users")
             .end((err, res) => {
                 res.should.have.status(200)
                 res.body.data.should.not.be.empty

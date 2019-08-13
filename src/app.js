@@ -1,11 +1,14 @@
 // Define Dependencies
 import express from "express"
+import socketIO from "socket.io"
+import http from "http"
 import cors from "cors"
 import compression from "compression"
-import morgan from "morgan"
+// import morgan from "morgan"
 
 import AppConfig from "./configs/AppConfig"
 import MongoDb from "./databases/MongoDb"
+import SocketIO from "./socket/SocketIO"
 
 import ErrorHandling from './middlewares/ErrorHandling'
 import LoggerTrackingHandling from './middlewares/LoggerTrackingHandling'
@@ -17,6 +20,7 @@ import UserRoutes from "./routes/UserRoutes"
 
 // Create Express App
 const app = express()
+
 
 // Define Middlewares
 // if (process.env.NODE_ENV !== "test") app.use(morgan("combined"))
@@ -49,10 +53,28 @@ app.use((req, res, next) => {
 // Error Handling Middleware
 app.use(ErrorHandling)
 
+// Start Htpp Server
+const server = http.createServer(app);
+
+
 // HTTP
-app.listen(AppConfig.PORT, _ => {
-    if( process.env.NODE_ENV !== "test") console.log(`|=====================> Server is listening on port: ${AppConfig.PORT}`)
+// Create socketIO
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+    console.log("connect")
+    // socket.emit("get_user", "ahihi user ne")
+});
+
+    // // Create socketIO
+    // SocketIO.init(server)
+
+server.listen(AppConfig.PORT, _ => {
+    if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Server is listening on port: ${AppConfig.PORT}`)
+
+    // Initialize mongoose
     MongoDb.connectDb()
+    // SocketIO.emit("get_user", "test")
 })
 
-export default app
+export default server

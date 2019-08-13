@@ -1,5 +1,4 @@
 {
-    "spec": "tests",
     "recursive": true,
     "timeout": 10000,
     "ui": "bdd"
