@@ -2,7 +2,7 @@
   "name": "nodejs-source-structure",
   "version": "1.0.0",
   "description": "Build Nodejs Structure",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon -r esm src/app.js",
     "start:pm2": "pm2 start ecosystem.config.js",

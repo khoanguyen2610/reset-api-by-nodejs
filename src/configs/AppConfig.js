@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const AppConfig = {
-	PORT: process.env.PORT || 8080,
+	API_SERVER_PORT: process.env.API_SERVER_PORT || 8080,
 
 	// Logger Variable
 	LOGGER_ENABLE_TRACKING: process.env.LOGGER_ENABLE_TRACKING || true,

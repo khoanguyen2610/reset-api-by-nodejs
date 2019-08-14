@@ -1,24 +1,27 @@
 import mongoose from "mongoose"
 
+import BaseModel, { BaseOptions } from "../utils/mongoose/BaseModel"
+
 // Define collection name
-const collectionName = "user"
+const collectionName = "usersss"
 
 // Define collection schema
 const UsersSchema = new mongoose.Schema({
 	username: { type: String, unique: true },
 	password: String,
-	createdAt: { type: Date, default: Date.now },
-	updateddAt: { type: Date, default: Date.now },
+	...BaseOptions
 })
+// Load BaseModel
+UsersSchema.loadClass(BaseModel)
 
 
-UsersSchema.statics.findAll = (params) => {
+
+
+UsersSchema.statics.findAll = (username) => {
 	return this.default.find({
-	  	username: params.username,
+	  	username: username,
 	})
 }
-
-// UsersSchema.pre("save", )
 
 // Export Model
 export default mongoose.model(collectionName, UsersSchema, collectionName)

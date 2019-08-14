@@ -69,8 +69,8 @@ io.on('connection', (socket) => {
     // // Create socketIO
     // SocketIO.init(server)
 
-server.listen(AppConfig.PORT, _ => {
-    if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Server is listening on port: ${AppConfig.PORT}`)
+server.listen(AppConfig.API_SERVER_PORT, _ => {
+    if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Server is listening on port: ${AppConfig.API_SERVER_PORT}`)
 
     // Initialize mongoose
     MongoDb.connectDb()

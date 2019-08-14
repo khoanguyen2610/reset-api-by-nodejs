@@ -13,7 +13,14 @@ class UsersController {
         }
 
         try {
-            const users = await UsersModel.find({username: /av8899/})
+            // var small = new UsersModel({
+            //     ocusername: "Test usern222amee",
+            //     password: "Test password",
+
+            // });
+            // small.save()
+
+            const users = await UsersModel.findByFullName(/av8899/)
             return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: users
