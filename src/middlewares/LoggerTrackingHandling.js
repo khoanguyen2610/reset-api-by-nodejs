@@ -7,7 +7,7 @@ import Logger from "../utils/Logger"
 |--------------------------------------------------------------------------
 */
 const exceptedPath = [
-	'/contentDocumentStart.js'
+	"/contentDocumentStart.js"
 ]
 
 export default (req, res, next) => {
@@ -43,16 +43,16 @@ export default (req, res, next) => {
 				end.apply(res, arguments)
 			}
 			// Write log when request finish
-			res.once('finish', () => {
+			res.once("finish", () => {
 				objLogger.message.response = {
 					statusCode: res.statusCode,
 					statusMessage: res.statusMessage,
 				}
 				
 				try {
-					objLogger.message.response.body = JSON.parse(Buffer.concat(chunks).toString('utf8'))
+					objLogger.message.response.body = JSON.parse(Buffer.concat(chunks).toString("utf8"))
 				} catch {
-					objLogger.message.response.body = Buffer.concat(chunks).toString('utf8')
+					objLogger.message.response.body = Buffer.concat(chunks).toString("utf8")
 				}
 			})
 		}

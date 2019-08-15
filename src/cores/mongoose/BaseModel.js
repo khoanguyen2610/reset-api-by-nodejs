@@ -7,7 +7,7 @@
 import mongoose from "mongoose"
 
 const BaseOptions = {
-    status: {type: String, lowercase: true, trim: true, enum: ["active", "inactive", "delete"], default: "active"},
+    status: { type: String, lowercase: true, trim: true, enum: ["active", "inactive", "delete"], default: "active" },
     createdAt: { type: Date, default: Date.now },
 	updateddAt: { type: Date, default: Date.now },
 }

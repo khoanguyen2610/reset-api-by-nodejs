@@ -16,7 +16,7 @@ export default (err, req, res, next) => {
     })
     
     // Response data
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
         res.jsonError({
             code: 500,
             message: "Unexpected Error"

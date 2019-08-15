@@ -1,9 +1,9 @@
 import mongoose from "mongoose"
 
-import BaseModel, { BaseOptions } from "../utils/mongoose/BaseModel"
+import BaseModel, { BaseOptions } from "../cores/mongoose/BaseModel"
 
 // Define collection name
-const collectionName = "usersss"
+const collectionName = "user"
 
 // Define collection schema
 const UsersSchema = new mongoose.Schema({
@@ -13,8 +13,6 @@ const UsersSchema = new mongoose.Schema({
 })
 // Load BaseModel
 UsersSchema.loadClass(BaseModel)
-
-
 
 
 UsersSchema.statics.findAll = (username) => {

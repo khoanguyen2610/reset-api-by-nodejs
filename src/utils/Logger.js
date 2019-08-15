@@ -5,7 +5,7 @@ import path from "path"
 
 import AppConfig from "../configs/AppConfig"
 
-const logPath = path.join(__dirname, `../../logs/${moment().format('YYYY/MM/DD')}`)
+const logPath = path.join(__dirname, `../../logs/${moment().format("YYYY/MM/DD")}`)
 
 const myFormat = format.json(({ level, message, label, timestamp }) => {
     return {
@@ -17,7 +17,7 @@ const myFormat = format.json(({ level, message, label, timestamp }) => {
 })
 
 
-export default createLogger({
+const logger = createLogger({
     format: format.combine(
         format.json(),
         format.timestamp(),
@@ -33,7 +33,7 @@ export default createLogger({
             maxsize: AppConfig.LOGGER_FILE_MAX_SIZE,
             maxFiles: AppConfig.LOGGER_FILE_MAX_FILES,
             filename: `${logPath}/erorr.log`,
-            level: 'error'
+            level: "error"
         }),
         // Write to all logs with level `info` and below to `combined.log`
         new transports.File({
@@ -43,3 +43,6 @@ export default createLogger({
         })
     ]
 })
+
+
+export default logger

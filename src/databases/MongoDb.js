@@ -7,13 +7,15 @@ import Logger from "../utils/Logger"
 class MongoDb {
     async connectDb() {
         try {
-            const DB_HOST = MongoDbConfig.DB_HOST || "127.0.0.1"
-            const DB_PORT = MongoDbConfig.DB_PORT || "27017"
+            const DB_SCHEME = MongoDbConfig.DB_SCHEME
+            const DB_HOST = MongoDbConfig.DB_HOST
+            const DB_PORT = MongoDbConfig.DB_PORT
             const DB_USER = MongoDbConfig.DB_USER
             const DB_PASS = MongoDbConfig.DB_PASS
             const DB_NAME = MongoDbConfig.DB_NAME
 
-            const uri = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+            const uri = `${DB_SCHEME}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+            console.log(uri)
             const options = {
                 connectTimeoutMS: 10000,
                 useNewUrlParser: true,

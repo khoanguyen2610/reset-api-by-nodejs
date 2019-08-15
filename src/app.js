@@ -7,13 +7,14 @@ import compression from "compression"
 // import morgan from "morgan"
 
 import AppConfig from "./configs/AppConfig"
+
 import MongoDb from "./databases/MongoDb"
 import SocketIO from "./socket/SocketIO"
 
-import ErrorHandling from './middlewares/ErrorHandling'
-import LoggerTrackingHandling from './middlewares/LoggerTrackingHandling'
-import ResponseHandling from './middlewares/ResponseHandling'
-// import ValidatorHandling from './middlewares/ValidatorHandling'
+import ErrorHandling from "./middlewares/ErrorHandling"
+import LoggerTrackingHandling from "./middlewares/LoggerTrackingHandling"
+import ResponseHandling from "./middlewares/ResponseHandling"
+// import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
 import UserRoutes from "./routes/UserRoutes"
@@ -54,17 +55,17 @@ app.use((req, res, next) => {
 app.use(ErrorHandling)
 
 // Start Htpp Server
-const server = http.createServer(app);
+const server = http.createServer(app)
 
 
 // HTTP
 // Create socketIO
-const io = socketIO(server);
+const io = socketIO(server)
 
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
     console.log("connect")
     // socket.emit("get_user", "ahihi user ne")
-});
+})
 
     // // Create socketIO
     // SocketIO.init(server)
