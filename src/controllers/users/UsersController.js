@@ -28,7 +28,6 @@ class UsersController {
             var user = new UsersModel({
                 ocusername: "Test usern222amee",
                 password: "Test password",
-
             });
             await user.save()
 
