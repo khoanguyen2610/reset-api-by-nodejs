@@ -22,6 +22,7 @@ export default (err, req, res, next) => {
             message: "Unexpected Error"
         })
     }
+
     res.jsonError({
         code: 500,
         message: err.message.toString(),

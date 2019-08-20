@@ -7,7 +7,6 @@ import compression from "compression"
 // import morgan from "morgan"
 
 import AppConfig from "./configs/AppConfig"
-
 import MongoDb from "./databases/MongoDb"
 import SocketIO from "./socket/SocketIO"
 
@@ -17,7 +16,7 @@ import ResponseHandling from "./middlewares/ResponseHandling"
 // import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
-import UserRoutes from "./routes/UserRoutes"
+import Routes from "./routes/Routes"
 
 // Create Express App
 const app = express()
@@ -35,13 +34,9 @@ app.use(cors())
     .use(LoggerTrackingHandling)
     .use(ResponseHandling)
 
-// Define Routes
-app.use("/api/v1/users", UserRoutes)
-app.use("/api/v1/account", UserRoutes)
-app.use("/api/v1/member", UserRoutes)
-app.use("/api/v1/formula", UserRoutes)
-app.use("/api/v1/formula-group", UserRoutes)
 
+// Define Routes
+app.use(Routes)
 
 app.use((req, res, next) => {
     res.jsonError({
@@ -56,7 +51,6 @@ app.use(ErrorHandling)
 
 // Start Htpp Server
 const server = http.createServer(app)
-
 
 // HTTP
 // Create socketIO

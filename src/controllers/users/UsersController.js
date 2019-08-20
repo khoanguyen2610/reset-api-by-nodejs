@@ -1,17 +1,7 @@
 import UsersModel from "../../models/UsersModel"
-import { validationResult } from "express-validator"
 
 class UsersController {
     async index (req, res, next) {
-        // const errors = validationResult(req)
-        // if (!errors.isEmpty()) {
-        //     return res.jsonError({
-        //         code: 400,
-        //         message: "Bad Request",
-        //         errors: errors.mapped()
-        //     })
-        // }
-
         try {
             const users = await UsersModel.findByFullName(/av8899/)
             return res.jsonSuccess({
