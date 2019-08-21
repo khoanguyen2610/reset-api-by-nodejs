@@ -1,6 +1,9 @@
 import Logger from "../utils/Logger"
 
 export default (err, req, res, next) => {
+    console.log(err)
+
+
 	Logger.log({
         level: "error",
         label: "INTERNAL_SERVER_ERROR",
@@ -10,6 +13,7 @@ export default (err, req, res, next) => {
             header: req.headers,
             body: req.body,
             method: req.method,
+            error_name: err.name,
             error: err.stack.toString(),
             ip: req.ip
         }
