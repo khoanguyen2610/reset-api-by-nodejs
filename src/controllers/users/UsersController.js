@@ -3,7 +3,7 @@ import UsersModel from "../../models/UsersModel"
 class UsersController {
     async index (req, res, next) {
         try {
-            const users = await UsersModel.findByFullName(/av8899/)
+            const users = await UsersModel.findByFullName("Test usern222amee")
             return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: users
@@ -15,8 +15,8 @@ class UsersController {
 
     async save (req, res, next) {
         try {
-            var user = new UsersModel({
-                ocusername: "Test usern222amee",
+            const user = new UsersModel({
+                username: "Test API",
                 password: "Test password",
             });
             await user.save()
@@ -30,7 +30,7 @@ class UsersController {
         }
     }
 
-    detail (req, res, next) {
+    async detail (req, res, next) {
         try {
             return res.jsonSuccess({
                 message: "You requested detail users controller",

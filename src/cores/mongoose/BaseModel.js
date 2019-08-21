@@ -5,23 +5,44 @@
 |--------------------------------------------------------------------------
 */
 import mongoose from "mongoose"
-
 // Exteneral fields
-const BaseOptions = {
+const BaseFields = {
     status: { type: String, lowercase: true, trim: true, enum: ["active", "inactive", "delete"], default: "active" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, default: null },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now() },
     updatedBy: { type: mongoose.Schema.Types.ObjectId, default: null },
-	updateddAt: { type: Date, default: Date.now },
+	updateddAt: { type: Date, default: Date.now() },
 }
 
 
+// BaseSchema process middleware
+const BaseSchema = schema => {
+    // Add Exteneral fields
+    schema.add(BaseFields)
+
+    // Create a pre-save hook
+    schema.pre("save", function(next) {
+        const now = Date.now()
+        this.createdBy = mongoose.mongo.ObjectID() //Temp data
+        this.createdAt = now
+        if (!this.created_at) {
+            this.updatedBy = mongoose.mongo.ObjectID() //Temp data
+            this.updateddAt = now
+        }
+        next()
+    })
+}
+
 // Based function
 class BaseModel {
-    static findById() {
 
+    // Update status => "delete"
+    static softDelete() {
+        
     }
 
+
+    // Temp function
     static findByFullName(username) {
         return this.find({ username: username })
     }
@@ -29,5 +50,6 @@ class BaseModel {
 
 export default BaseModel
 export {
-    BaseOptions
+    BaseSchema,
+    BaseFields
 }
