@@ -37,7 +37,7 @@ const BaseSchema = schema => {
 // Based function
 class BaseModel {
     // Update status => "delete"
-    static async softDelete(id) {
+    static softDelete(id) {
         return this.updateOne({_id: id}, {status: "delete"})
     }
 
