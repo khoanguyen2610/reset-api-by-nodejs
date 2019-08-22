@@ -9,7 +9,7 @@ services:
         ports:
             - ${NODE_SERVER_PORT}:${NODE_SERVER_PORT}
         volumes:
-            - ./:/root/app
+            - ./:/usr/src/app
             - ./node_modules
     # mongo-server:
     #     container_name: mongo-server
