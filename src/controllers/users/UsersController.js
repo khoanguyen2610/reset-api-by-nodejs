@@ -19,11 +19,23 @@ class UsersController {
                 username: "Test API",
                 password: "Test password",
             });
-            await user.save()
-
+            await user.save();
             return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: user
+            })
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    async delete (req, res, next){
+        const id = req.params.id;
+        try {
+            const user = await UsersModel.softDelete(id);
+            return res.jsonSuccess({
+                message: "You requested delete users controller",
+                data: id
             })
         } catch (err) {
             next(err)
