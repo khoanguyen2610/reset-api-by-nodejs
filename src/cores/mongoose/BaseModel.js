@@ -5,14 +5,16 @@
 |--------------------------------------------------------------------------
 */
 import mongoose from "mongoose"
-// import ModelUsers from "../../models/UsersModel"
+
+import Moment from "../../utils/Moment"
+
 // Exteneral fields
 const BaseFields = {
     status: { type: String, lowercase: true, trim: true, enum: ["active", "inactive", "delete"], default: "active" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, default: null },
-    createdAt: { type: Date, default: Date.now() },
+    createdAt: { type: Date, default: Moment.format() },
     updatedBy: { type: mongoose.Schema.Types.ObjectId, default: null },
-	updateddAt: { type: Date, default: Date.now() },
+	updateddAt: { type: Date, default: Moment.format() },
 }
 
 
@@ -23,7 +25,7 @@ const BaseSchema = schema => {
 
     // Create a pre-save hook
     schema.pre("save", function(next) {
-        const now = Date.now()
+        const now = Moment.format()
         this.createdBy = mongoose.mongo.ObjectID() //Temp data
         this.createdAt = now
         if (!this.created_at) {

@@ -3,7 +3,7 @@ import UsersModel from "../../models/UsersModel"
 class UsersController {
     async index (req, res, next) {
         try {
-            const users = await UsersModel.findByFullName("Test usern222amee")
+            const users = await UsersModel.findByFullName(/av8899/)
             return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: users
@@ -18,8 +18,8 @@ class UsersController {
             const user = new UsersModel({
                 username: "Test API",
                 password: "Test password",
-            });
-            await user.save();
+            })
+            await user.save()
             return res.jsonSuccess({
                 message: "You requested index users controller",
                 data: user
@@ -30,9 +30,9 @@ class UsersController {
     }
 
     async delete (req, res, next){
-        const id = req.params.id;
+        const id = req.params.id
         try {
-            const user = await UsersModel.softDelete(id);
+            const user = await UsersModel.softDelete(id)
             return res.jsonSuccess({
                 message: "You requested delete users controller",
                 data: id

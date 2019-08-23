@@ -1,4 +1,5 @@
 import Logger from "../utils/Logger"
+import Moment from "../utils/Moment"
 
 export default (err, req, res, next) => {
     console.log(err)
@@ -8,7 +9,7 @@ export default (err, req, res, next) => {
         level: "error",
         label: "INTERNAL_SERVER_ERROR",
         message: {
-            time: new Date().toString(),
+            time: Moment.format(),
             path: req.url,
             header: req.headers,
             body: req.body,
