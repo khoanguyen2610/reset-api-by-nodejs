@@ -7,7 +7,7 @@ services:
         networks:
             - host
         ports:
-            - ${NODE_SERVER_PORT}:${NODE_SERVER_PORT}
+            - ${API_SERVER_PORT}:${API_SERVER_PORT}
         volumes:
             - ./:/usr/src/app
             - ./node_modules
