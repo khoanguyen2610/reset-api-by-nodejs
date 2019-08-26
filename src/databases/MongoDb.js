@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 
-
 import MongoDbConfig from "../configs/MongoDbConfig"
 import Logger from "../utils/Logger"
+import Moment from "../utils/Moment"
 
 class MongoDb {
     async connectDb() {
@@ -15,7 +15,6 @@ class MongoDb {
             const DB_NAME = MongoDbConfig.DB_NAME
 
             const uri = `${DB_SCHEME}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
-            console.log(uri)
             const options = {
                 connectTimeoutMS: 10000,
                 useNewUrlParser: true,
@@ -28,7 +27,7 @@ class MongoDb {
                 level: "error",
                 label: "MongoDb",
                 message: {
-                    time: new Date().toString(),
+                    time: Moment.format(),
                     error: error
                 }
             })

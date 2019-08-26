@@ -9,7 +9,7 @@ class SocketIO {
     }
 
     init(server) {
-        const io = socketIO(server);
+        const io = socketIO(server)
         io.on("connection", socket => {
             socket.emit("get_user", "tui là user")
             if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Web socker is listening on port: ${AppConfig.API_SERVER_PORT}`)

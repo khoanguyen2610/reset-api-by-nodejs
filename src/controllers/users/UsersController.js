@@ -17,13 +17,7 @@ class UsersController {
         try {
             const user = new UsersModel({
                 username: "Test API",
-                email: "Test@gmail.com",
-                fullname: "Test API",
                 password: "Test password",
-                // username: "API",
-                // email: "API@gmail.com",
-                // fullname: "API",
-                // password: "API password",
             });
             await user.save();
             return res.jsonSuccess({

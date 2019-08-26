@@ -1,5 +1,4 @@
-import dotenv from "dotenv"
-dotenv.config()
+import "./environments/LoadEnv"
 
 const MongoDbConfig = {
 	DB_SCHEME: process.env.DB_SCHEME || "mongodb",

@@ -1,5 +1,6 @@
 import AppConfig from "../configs/AppConfig"
 import Logger from "../utils/Logger"
+import Moment from "../utils/Moment"
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ export default (req, res, next) => {
 			level: "info",
 			label: "REQUEST_TRACKING",
 			message: {
-				time: new Date().toString(),
+				time: Moment.format(),
 				path: req.url,
 				header: req.headers,
 				body: req.body,
