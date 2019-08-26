@@ -32,16 +32,17 @@ class UsersController {
     async delete (req, res, next){
         const id = req.params.id;
         try {
-            const user = await UsersModel.softDelete(id);
+            const user = await UsersModel.softDelete(id, res);
             return res.jsonSuccess({
                 message: "You requested delete users controller",
                 data: id
             })
         } catch (err) {
-            return res.jsonError({
-                message: "You requested delete users controller FAIL",
-                errors: "Wrong id",
-            })
+            next (err)
+            // return res.jsonError({
+            //     message: "You requested delete users controller FAIL",
+            //     errors: "Wrong id",
+            // })
         }
     }
 
