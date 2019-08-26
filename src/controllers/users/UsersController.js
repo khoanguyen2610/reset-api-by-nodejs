@@ -17,7 +17,13 @@ class UsersController {
         try {
             const user = new UsersModel({
                 username: "Test API",
+                email: "Test@gmail.com",
+                fullname: "Test API",
                 password: "Test password",
+                // username: "API",
+                // email: "API@gmail.com",
+                // fullname: "API",
+                // password: "API password",
             });
             await user.save();
             return res.jsonSuccess({
@@ -38,7 +44,10 @@ class UsersController {
                 data: id
             })
         } catch (err) {
-            next(err)
+            return res.jsonError({
+                message: "You requested delete users controller FAIL",
+                errors: "Wrong id",
+            })
         }
     }
 
