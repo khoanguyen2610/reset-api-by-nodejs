@@ -72,5 +72,4 @@ server.listen(AppConfig.API_SERVER_PORT, _ => {
     // SocketIO.emit("get_user", "test")
 })
 
-
 export default server

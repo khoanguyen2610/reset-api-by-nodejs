@@ -16,7 +16,7 @@ class UsersController {
     async save (req, res, next) {
         try {
             const user = new UsersModel({
-                username: "Test API",
+                username: "Test API - " + Math.round(Math.random()*100),
                 password: "Test password",
             })
             await user.save()
