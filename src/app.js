@@ -1,5 +1,6 @@
 // Define Dependencies
 import express from "express"
+import session from "express-session"
 import socketIO from "socket.io"
 import http from "http"
 import cors from "cors"
@@ -31,6 +32,15 @@ app.use(cors())
     .use(express.json())
     .use(express.urlencoded({
         extended: true
+    }))
+    .use(session({
+        key: 'user_sid',
+        secret: 'somerandonstuffs',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 600000
+        }
     }))
     .use(LoggerTrackingHandling)
     .use(ResponseHandling)
@@ -72,6 +82,5 @@ server.listen(AppConfig.API_SERVER_PORT, _ => {
     MongoDb.connectDb()
     // SocketIO.emit("get_user", "test")
 })
-
 
 export default server

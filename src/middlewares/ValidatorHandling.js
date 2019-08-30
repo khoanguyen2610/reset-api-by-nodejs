@@ -1,5 +1,7 @@
 import { validationResult } from "express-validator"
 
+import ExceptionConfig from "../configs/ExceptionConfig"
+
 /*
 |--------------------------------------------------------------------------
 | Define Validation Error Format
@@ -28,7 +30,7 @@ const ValidatorHandling = validations => {
 
         return res.jsonError({
             code: 400,
-            message: "Bad Request",
+            message: ExceptionConfig.COMMON.VALIDATION_ERROR,
             errors: errors.mapped()
         })
     }

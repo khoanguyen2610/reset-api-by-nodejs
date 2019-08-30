@@ -6,7 +6,7 @@
 */
 import mongoose from "mongoose"
 
-import Moment from "../../utils/Moment"
+import Moment from "../../Moment"
 
 // Exteneral fields
 const BaseFields = {
@@ -22,6 +22,9 @@ const BaseFields = {
 const BaseSchema = schema => {
     // Add Exteneral fields
     schema.add(BaseFields)
+
+    // Disabled version key in collection
+    schema.set('versionKey', false)
 
     // Create a pre-save hook
     schema.pre("save", function(next) {

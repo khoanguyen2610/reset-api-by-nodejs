@@ -19,6 +19,8 @@ class MongoDb {
                 connectTimeoutMS: 10000,
                 useNewUrlParser: true,
                 useCreateIndex: true,
+                autoReconnect: true,
+                reconnectTries: Number.MAX_VALUE
             }
             await mongoose.connect(uri, options)
             if( process.env.NODE_ENV !== "test") console.log("|>>>>>>>>>>>>>>>>>>>>>>> Connect Mongo Database Successfully")
