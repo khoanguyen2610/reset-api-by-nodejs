@@ -1,6 +1,5 @@
 // Define Dependencies
 import express from "express"
-import session from "express-session"
 import socketIO from "socket.io"
 import http from "http"
 import cors from "cors"
@@ -9,11 +8,11 @@ import compression from "compression"
 
 import AppConfig from "./configs/AppConfig"
 import MongoDb from "./databases/MongoDb"
-import SocketIO from "./socket/SocketIO"
 
 import ErrorHandling from "./middlewares/ErrorHandling"
 import LoggerTrackingHandling from "./middlewares/LoggerTrackingHandling"
 import ResponseHandling from "./middlewares/ResponseHandling"
+import SessionHandling from "./middlewares/SessionHandling"
 // import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
@@ -32,15 +31,8 @@ app.use(cors())
     .use(express.urlencoded({
         extended: true
     }))
-    .use(session({
-        key: 'user_sid',
-        secret: 'somerandonstuffs',
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            expires: 600000
-        }
-    }))
+    
+    .use(SessionHandling)
     .use(LoggerTrackingHandling)
     .use(ResponseHandling)
 
