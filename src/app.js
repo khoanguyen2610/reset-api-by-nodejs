@@ -55,26 +55,10 @@ app.use((req, res, next) => {
     })
     next()
 })
-
 // Error Handling Middleware
 app.use(ErrorHandling)
 
-// Start Htpp Server
-const server = http.createServer(app)
-
-// HTTP
-// Create socketIO
-const io = socketIO(server)
-
-io.on("connection", (socket) => {
-    console.log("connect")
-    // socket.emit("get_user", "ahihi user ne")
-})
-
-    // // Create socketIO
-    // SocketIO.init(server)
-
-server.listen(AppConfig.API_SERVER_PORT, _ => {
+app.listen(AppConfig.API_SERVER_PORT, _ => {
     if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Server is listening on port: ${AppConfig.API_SERVER_PORT}`)
 
     // Initialize mongoose
@@ -82,4 +66,4 @@ server.listen(AppConfig.API_SERVER_PORT, _ => {
     // SocketIO.emit("get_user", "test")
 })
 
-export default server
+export default app

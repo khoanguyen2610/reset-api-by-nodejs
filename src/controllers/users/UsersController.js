@@ -2,13 +2,15 @@ import UsersModel from "../../models/UsersModel"
 import ExceptionConfig from "../../configs/ExceptionConfig"
 import HashPassword from "../../utils/HashPassword"
 
+import Session from "../../utils/Session"
 class UsersController {
     async index (req, res, next) {
         try {
-            const users = await UsersModel.findByFullName(/av8899/)
+            const users = await UsersModel.findAll(/test api - 3/i)
+            // const total = await users.count()
             return res.jsonSuccess({
                 message: ExceptionConfig.COMMON.REQUEST_SUCCESS,
-                data: users
+                data: Session.get("user")
             })
         } catch (err) {
             next(err)
