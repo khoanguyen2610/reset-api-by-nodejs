@@ -1,10 +1,8 @@
 import Logger from "../utils/Logger"
 import Moment from "../utils/Moment"
+import ExceptionConfig from "../configs/ExceptionConfig"
 
 export default (err, req, res, next) => {
-    console.log(err)
-
-
 	Logger.log({
         level: "error",
         label: "INTERNAL_SERVER_ERROR",
@@ -24,7 +22,7 @@ export default (err, req, res, next) => {
     if (process.env.NODE_ENV === "production") {
         res.jsonError({
             code: 500,
-            message: "Unexpected Error"
+            message: ExceptionConfig.COMMON.INTERNAL_ERROR
         })
     }
 
