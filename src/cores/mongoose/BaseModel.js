@@ -40,10 +40,25 @@ const BaseSchema = schema => {
 class BaseModel {
     // Update status => "delete"
     static softDelete(id, res) {
-            this.findOne({_id: id}, (err) => {
+        this.findOne({_id: id}, (err) => {
             if(err) return res.status(404).json({success: false, message: 'Not found user by id!', error: 'Wrong id'});
-            return this.updateOne({_id: id}, {status: "delete"});
         });
+        return this.updateOne({_id: id}, {status: "delete"});
+    }
+
+    static findUserAndCount(username) {
+        return this.aggregate([
+            {$match: {status: 'active'}},
+            {$group: {
+                _id: null,
+                totalUser: {$sum: 1},
+                data: {$push:'$$ROOT'},
+            }},
+            {$project: {
+                totalUser: "$totalUser" ,
+                data: { $slice: [ "$data", 5 ] },
+            }}
+        ])
     }
 
     // Temp function

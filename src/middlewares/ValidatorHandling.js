@@ -13,14 +13,15 @@ const ValidationFormatter = validationResult.withDefaults({
             field: error.param,
         }
     }
-})
+});
 
 
 const ValidatorHandling = validations => {
     return async (req, res, next) => {
-        await Promise.all(validations.map(validation => validation.run(req)))
+        await Promise.all(validations.map(validation => validation.run(req)));
 
-        const errors = ValidationFormatter(req)
+        const errors = ValidationFormatter(req);
+
         if (errors.isEmpty()) {
             return next()
         }
@@ -31,6 +32,6 @@ const ValidatorHandling = validations => {
             errors: errors.mapped()
         })
     }
-}
+};
 
 export default ValidatorHandling

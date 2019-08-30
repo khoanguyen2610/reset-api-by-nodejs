@@ -13,10 +13,6 @@ const UsersSchema = new mongoose.Schema({
 	password: String
 });
 //--- index
-// username - unqiue  			1
-// { username & email } unqiue 	2
-// fullname 					3
-// UsersSchema.index({username: 1} && {username: 1, email: 1} && {fullname: 1}, {unique: true});
 UsersSchema.index({username: 1}, {unique: true});
 UsersSchema.index({username: 1, email: 1}, {unique: true});
 UsersSchema.index({fullname: 1});
@@ -25,10 +21,17 @@ UsersSchema.index({fullname: 1});
 UsersSchema.loadClass(BaseModel);
 UsersSchema.plugin(BaseSchema);
 
-
 UsersSchema.statics.findAll = (username) => {
 	return this.default.find({
 	  	username: username,
+	})
+};
+
+UsersSchema.statics.checkUniqueUsername = (username) => {
+	return this.default.find({
+		username: username,
+	}).then(function (users) {
+		return users.length === 0;
 	})
 };
 

@@ -1,4 +1,5 @@
-import { check } from "express-validator"
+import { check, validationResult } from "express-validator"
+import UsersSchema from "../../models/UsersModel"
 
 const UserValidator = {
 
@@ -9,6 +10,14 @@ const UserValidator = {
     |--------------------------------------------------------------------------
     */
 	postCreateUser: [
+	    check('username')
+            .custom( async value => {
+                let isUnique = await UsersSchema.checkUniqueUsername(value);
+                if(!isUnique){
+                    return Promise.reject(value + ' is already in use')
+                }
+            })
+
         // check("email")
         //     .isLength({ min: 5 }).withMessage("must be at least 5 chars long")
         //     .isEmail().withMessage("have to email"),
