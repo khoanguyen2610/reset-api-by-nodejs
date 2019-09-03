@@ -8,11 +8,11 @@ import compression from "compression"
 
 import AppConfig from "./configs/AppConfig"
 import MongoDb from "./databases/MongoDb"
-import SocketIO from "./socket/SocketIO"
 
 import ErrorHandling from "./middlewares/ErrorHandling"
 import LoggerTrackingHandling from "./middlewares/LoggerTrackingHandling"
 import ResponseHandling from "./middlewares/ResponseHandling"
+import SessionHandling from "./middlewares/SessionHandling"
 // import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
@@ -31,6 +31,8 @@ app.use(cors())
     .use(express.urlencoded({
         extended: true
     }))
+    
+    .use(SessionHandling)
     .use(LoggerTrackingHandling)
     .use(ResponseHandling)
 
@@ -45,26 +47,10 @@ app.use((req, res, next) => {
     })
     next()
 })
-
 // Error Handling Middleware
 app.use(ErrorHandling)
 
-// Start Htpp Server
-const server = http.createServer(app)
-
-// HTTP
-// Create socketIO
-const io = socketIO(server)
-
-io.on("connection", (socket) => {
-    console.log("connect")
-    // socket.emit("get_user", "ahihi user ne")
-})
-
-    // // Create socketIO
-    // SocketIO.init(server)
-
-server.listen(AppConfig.API_SERVER_PORT, _ => {
+app.listen(AppConfig.API_SERVER_PORT, _ => {
     if( process.env.NODE_ENV !== "test") console.log(`|>>>>>>>>>>>>>>>>>>>>>>> Server is listening on port: ${AppConfig.API_SERVER_PORT}`)
 
     // Initialize mongoose
@@ -72,4 +58,4 @@ server.listen(AppConfig.API_SERVER_PORT, _ => {
     // SocketIO.emit("get_user", "test")
 })
 
-export default server
+export default app

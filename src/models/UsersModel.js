@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 
-import BaseModel, { BaseSchema } from "../cores/mongoose/BaseModel"
+import BaseModel, { BaseSchema } from "../utils/mongoose/BaseModel"
+
+import Session from "../utils/Session"
 
 // Define collection name
 const collectionName = "user"
@@ -16,10 +18,12 @@ UsersSchema.plugin(BaseSchema)
 
 
 UsersSchema.statics.findAll = (username) => {
-	return this.default.find({
-	  	username: username,
-	})
+	console.log(Session.get())
+	// return this.default.find({
+	//   	username: username,
+	// })
 }
+
 
 // Export Model
 export default mongoose.model(collectionName, UsersSchema, collectionName)

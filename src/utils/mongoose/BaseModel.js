@@ -6,7 +6,7 @@
 */
 import mongoose from "mongoose"
 
-import Moment from "../../utils/Moment"
+import Moment from "../Moment"
 
 // Exteneral fields
 const BaseFields = {

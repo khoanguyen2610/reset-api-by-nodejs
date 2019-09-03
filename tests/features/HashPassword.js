@@ -6,6 +6,7 @@ import HashPassword from "../../src/utils/HashPassword"
 
 const dummyPassword = "passpass"
 const dummyWrongPassword = "wrong_password"
+const dummyHashedPassword = "$2b$10$LQAUzdhFCT7htrJ76HsOMOI2ywhWhSHIinE1RTcTFpSpV2vYMQtmK" //paspass
 let hashedPassword = ""
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,11 @@ describe("Feature hash password", () => {
         chai.assert.isNotOk(compare)
         done()
     })
+
+    it("Hashed password should be equal default hash", (done) => {
+        const compare = HashPassword.compareHash(dummyPassword, dummyHashedPassword)
+        chai.assert.isOk(compare)
+        done()
+    })
 })
+

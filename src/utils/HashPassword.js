@@ -1,12 +1,15 @@
 import bcrypt from "bcrypt"
 
 class HashPassword {
-    constructor() {
-        this.saltPassword = bcrypt.genSaltSync(10)
+    constructor() {}
+
+    genSalt() {
+        const saltOrRounds = Math.round(Math.random() * 10)
+        return bcrypt.genSaltSync(saltOrRounds)
     }
 
     hash(password) {
-        return bcrypt.hashSync(password, this.saltPassword)
+        return bcrypt.hashSync(password, this.genSalt())
     }
 
     compareHash(password, hash) {

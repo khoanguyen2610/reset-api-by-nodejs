@@ -30,6 +30,7 @@ export default (req, res, next) => {
 
 		// Tracking response data
 		if (AppConfig.LOGGER_ENABLE_TRACKING_RESPONSE) {
+			console.log("fukk", AppConfig)
 			// Parse Response body
 			const { write, end } = res
 			const chunks = []
@@ -55,9 +56,12 @@ export default (req, res, next) => {
 				} catch {
 					objLogger.message.response.body = Buffer.concat(chunks).toString("utf8")
 				}
+				
+				Logger.log(objLogger)
 			})
+		} else {
+			Logger.log(objLogger)
 		}
-		Logger.log(objLogger)
 	}
 	next()
 }
