@@ -14,7 +14,7 @@ import SocketIO from "./socket/SocketIO"
 import ErrorHandling from "./middlewares/ErrorHandling"
 import LoggerTrackingHandling from "./middlewares/LoggerTrackingHandling"
 import ResponseHandling from "./middlewares/ResponseHandling"
-import bodyParser from 'body-parser'
+import SessionHandling from "./middlewares/SessionHandling"
 // import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
@@ -33,6 +33,7 @@ app.use(cors())
     .use(express.urlencoded({
         extended: true
     }))
+    .use(SessionHandling)
     .use(session({
         key: 'user_sid',
         secret: 'somerandonstuffs',

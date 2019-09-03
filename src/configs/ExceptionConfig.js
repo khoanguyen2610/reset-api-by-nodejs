@@ -11,8 +11,12 @@ const ExceptionConfig = {
         INTERNAL_ERROR          : "Unexpected Error",
     },
 
+    VALIDATION: {
+        REQUIRE_FIELD           : "This field is required",
+        INVALID_EMAIL           : "Please enter the valid email"
+    },
+
     AUTH: {
-        
     }
 }
 
