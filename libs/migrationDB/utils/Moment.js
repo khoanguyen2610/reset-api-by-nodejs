@@ -1,7 +1,7 @@
-const moment = require("moment-timezone")
+import moment from "moment-timezone"
 
-const AppConfig = require("../config/AppConfig")
+import AppConfig from "../config/AppConfig"
 
 const Moment = moment().locale(AppConfig.LOCALE).tz(AppConfig.TIME_ZONE)
 
-module.exports = Moment
+export default Moment

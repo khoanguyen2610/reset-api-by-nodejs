@@ -1,22 +1,22 @@
 
-const mongoose = require ("../query/mongoose")
+import mongoose from "../query/mongoose"
 
-const {BaseModel_N, BaseSchema_N } = require("../cores/baseModel_N")
+import {BaseModel_N, BaseSchema_N } from "../cores/baseModel_N"
 // Define collection name
-const collectionNameN = "userTest"
+const collectionName_N = "userTest"
 
 // Define collection schema
-const UsersNSchema = new mongoose.Schema({
+const Users_NSchema = new mongoose.Schema({
 	username: { type: String, unique: true },
 	password: String
 
 })
 // Load BaseModel
-UsersNSchema.loadClass(BaseModel_N)
-UsersNSchema.plugin(BaseSchema_N)
+Users_NSchema.loadClass(BaseModel_N)
+Users_NSchema.plugin(BaseSchema_N)
 
 
-UsersNSchema.statics.findAll = (username) => {
+Users_NSchema.statics.findAll = (username) => {
 	return this.default.find({
 	  	username: username,
 	})
@@ -25,4 +25,4 @@ UsersNSchema.statics.findAll = (username) => {
 // Export Model
 // export default mongoose.model(collectionName, UsersSchema, collectionName)
 
-module.exports = mongoose.db_N.model(collectionNameN,UsersNSchema,collectionNameN)
+export default mongoose.db_N.model(collectionName_N,Users_NSchema,collectionName_N)

@@ -6,9 +6,9 @@
 */
 
 
-const mongoose = require ("../query/mongoose")
+import mongoose from "../query/mongoose"
 
-// const Moment = require("../utils/Moment")
+import Moment from"../utils/Moment"
 
 // Exteneral fields
 const BaseFields = {
@@ -63,15 +63,11 @@ class BaseModel_N {
     }
 }
 
-// export default BaseModel
-// export {
-//     BaseSchema,
-//     BaseFields
-// }
-
-
-module.exports = {
+// export default BaseModel_N
+export {
     BaseModel_N,
     BaseSchema_N,
     BaseFields
 }
+
+

@@ -1,7 +1,7 @@
 
 
-const mongoose = require ('../query/mongoose')
-const {BaseModel, BaseSchema } = require("../cores/baseModel")
+import mongoose from '../query/mongoose'
+import {BaseModel, BaseSchema } from "../cores/baseModel"
 
 // Define collection name
 const collectionName = "user"
@@ -26,4 +26,4 @@ UsersSchema.statics.findAll = (username) => {
 // Export Model
 // export default mongoose.model(collectionName, UsersSchema, collectionName)
 
-module.exports = mongoose.db.model(collectionName,UsersSchema,collectionName)
+export default mongoose.db.model(collectionName,UsersSchema,collectionName)

@@ -12,4 +12,4 @@ const AppConfig = {
 	LOGGER_FILE_MAX_FILES: process.env.LOGGER_FILE_MAX_FILES || 10,
 }
 
-module.exports = AppConfig
+export default AppConfig
