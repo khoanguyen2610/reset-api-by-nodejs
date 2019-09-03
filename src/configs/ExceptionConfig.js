@@ -17,6 +17,9 @@ const ExceptionConfig = {
     },
 
     AUTH: {
+        MISSING_TOKEN           : "No token provided.",
+        MISSING_REFRESH_TOKEN   : "No refresh_token provided.",
+        UNAUTHORIZED            : "Access denied due to missing subscription key. Make sure to include subscription key when making requests to this API.",
     }
 }
 

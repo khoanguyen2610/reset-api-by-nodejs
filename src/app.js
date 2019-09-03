@@ -12,7 +12,7 @@ import MongoDb from "./databases/MongoDb"
 import ErrorHandling from "./middlewares/ErrorHandling"
 import LoggerTrackingHandling from "./middlewares/LoggerTrackingHandling"
 import ResponseHandling from "./middlewares/ResponseHandling"
-import SessionHandling from "./middlewares/SessionHandling"
+import SessionMiddleware, { SessionHandling } from "./middlewares/SessionHandling"
 // import ValidatorHandling from "./middlewares/ValidatorHandling"
 
 // Import file routes config
@@ -31,10 +31,11 @@ app.use(cors())
     .use(express.urlencoded({
         extended: true
     }))
-    
+    .use(SessionMiddleware)
     .use(SessionHandling)
     .use(LoggerTrackingHandling)
     .use(ResponseHandling)
+    
 
 
 // Define Routes

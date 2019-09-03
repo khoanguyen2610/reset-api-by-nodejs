@@ -1,5 +1,3 @@
-import Session from "../utils/Session"
-
 export default ( req, res, next) => {
     // Define response format incase success
     res.jsonSuccess = ({...args}) => {
@@ -18,6 +16,5 @@ export default ( req, res, next) => {
             errors: args.errors || null
         })
     }
-    Session.instance(req.session)
     next()
 }

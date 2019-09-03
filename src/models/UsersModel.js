@@ -18,7 +18,6 @@ UsersSchema.plugin(BaseSchema)
 
 
 UsersSchema.statics.findAll = (username) => {
-	console.log(Session.get())
 	// return this.default.find({
 	//   	username: username,
 	// })

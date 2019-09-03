@@ -24,7 +24,7 @@ const BaseSchema = schema => {
     schema.add(BaseFields)
 
     // Disabled version key in collection
-    schema.set('versionKey', false)
+    schema.set("versionKey", false)
 
     // Create a pre-save hook
     schema.pre("save", function(next) {

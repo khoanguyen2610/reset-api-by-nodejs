@@ -1,8 +1,8 @@
 import UsersModel from "../../models/UsersModel"
 import ExceptionConfig from "../../configs/ExceptionConfig"
 import HashPassword from "../../utils/HashPassword"
-
 import Session from "../../utils/Session"
+
 class UsersController {
     async index (req, res, next) {
         try {
@@ -10,7 +10,7 @@ class UsersController {
             // const total = await users.count()
             return res.jsonSuccess({
                 message: ExceptionConfig.COMMON.REQUEST_SUCCESS,
-                data: Session.get("user")
+                data: Session.get()
             })
         } catch (err) {
             next(err)
